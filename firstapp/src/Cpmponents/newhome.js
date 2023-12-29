@@ -10,12 +10,18 @@ const Newhome = () => {
         setTimeout( () => {
         fetch('http://localhost:8000/blogs')
         .then(res => {
+            if(!res.ok) {
+              throw Error('could not fetch data')
+            }
             return res.json()
         })
         .then(data => {
             setBlogs(data);
             setIsLoading(false);
-        });
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
         },1000);
     },[]);
 

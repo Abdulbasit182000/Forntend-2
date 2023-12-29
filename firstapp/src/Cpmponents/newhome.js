@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BlogList from "./BlogList";
 
 const Newhome = () => {
@@ -7,6 +7,8 @@ const Newhome = () => {
         { title: 'Blog 2', body: 'Blog 2 body', author: 'basit', id: 2 },
         { title: 'Blog 3', body: 'Blog 3 body', author: 'ahmed', id: 3 }
     ]);
+    
+    const [name, setName] = useState('ali')
 
     const handleClick = () => {
         let title = document.getElementById('title').value;
@@ -21,15 +23,24 @@ const Newhome = () => {
         ]);
     }
 
+    const handleName = () => {
+        setName('basit')
+    }
     const handleDelete = (id) => {
         const newBlogs = blogs.filter(blog => blog.id !== id);
         setBlogs(newBlogs)
     }
 
+    useEffect(() => {
+        console.log('use effect ran')
+    },[name]);
+
     return (
         <div className="newhome">
             <h2>Add Blog</h2>
             <div>
+                <button onClick={() => handleName()}>Change Name</button>
+                <p>{name}</p>
                 <label>
                     Title:
                     <input type="text" name="Title" id="title" />

@@ -21,6 +21,11 @@ const Newhome = () => {
         ]);
     }
 
+    const handleDelete = (id) => {
+        const newBlogs = blogs.filter(blog => blog.id !== id);
+        setBlogs(newBlogs)
+    }
+
     return (
         <div className="newhome">
             <h2>Add Blog</h2>
@@ -38,8 +43,8 @@ const Newhome = () => {
                 <button onClick={handleClick}>Submit</button>
             </div>
             <div></div>
-            <BlogList blogs={blogs} title="All Blogs!"/>
-            <BlogList blogs={blogs.filter((blog)=> blog.author === 'ali')} title="Ali's Blogs!"/>
+            <BlogList blogs={blogs} title="All Blogs!" handleDelete={handleDelete}/>
+            <BlogList blogs={blogs.filter((blog)=> blog.author === 'ali')} title="Ali's Blogs!" handleDelete={handleDelete}/>
         </div>
     );
 }
